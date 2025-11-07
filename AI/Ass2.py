@@ -1,4 +1,36 @@
-# A* algorithem 2nd assignment
+from queue import PriorityQueue
+
+def astar_search(graph, heuristic, start, goal):
+    open_list = PriorityQueue()
+    open_list.put((0, start))   # (f-score, node)
+
+    came_from = {}              # to store path
+    g_score = {node: float('inf') for node in graph}
+    g_score[start] = 0
+
+    while not open_list.empty():
+        current_f, current_node = open_list.get()
+
+        if current_node == goal:
+            path = []
+            while current_node in came_from:
+                path.append(current_node)
+                current_node = came_from[current_node]
+            path.append(start)
+            path.reverse()
+            return path, g_score[goal]
+
+        for neighbor in graph[current_node]:
+            tentative_g = g_score[current_node] + graph[current_node][neighbor]
+
+            if tentative_g < g_score[neighbor]:
+                came_from[neighbor] = current_node
+                g_score[neighbor] = tentative_g
+                f_score = tentative_g + heuristic[neighbor]
+                open_list.put((f_score, neighbor))
+
+    return None, float('inf')
+
 
 if __name__ == "__main__":
 
@@ -28,27 +60,10 @@ if __name__ == "__main__":
         'J': 0
     }
 
-    start_node = 'A'
-    Goal_node = 'G'
+    start = 'A'
+    goal = 'G'
 
-    OPEN = [start_node]  # Add start node to OPEN list
-    CLOSED = []
+    path, cost = astar_search(graph, heuristic, start, goal)
 
-    def astar():
-        if not OPEN:
-            print('list is empty\nSorry next time!')
-            return
-
-        current = OPEN[0]
-        print("Current OPEN list:", OPEN)
-
-        if current == start_node:  # Compare with start_node
-            f_b = graph['A']['B'] + heuristic['B']
-            f_f = graph['A']['F'] + heuristic['F']
-
-            print(f"f(B) = {graph['A']['B']} + {heuristic['B']} = {f_b}")
-            print(f"f(F) = {graph['A']['F']} + {heuristic['F']} = {f_f}")
-
-    # CALL THE FUNCTION
-    astar()
-
+    print("Shortest Path:", path)
+    print("Total Cost:", cost)
