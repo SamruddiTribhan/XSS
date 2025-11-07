@@ -9,9 +9,10 @@ nlp = spacy.load("en_core_web_sm")
 
 # Define the input text with spaces between sentences
 about_text = (
-   "India is my country. "
-   "Maharashtra is my state."
+    "Python is a programming language. "
+    "It is widely used in artificial intelligence."
 )
+
 
 # 1. Tokenization:
 about_doc = nlp(about_text)

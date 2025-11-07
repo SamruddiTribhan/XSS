@@ -19,7 +19,8 @@ def perform_ner(text):
 
 if __name__ == "__main__":
     # Example text
-    text = "Earth is the third planet from the Sun in our solar system and the only known celestial body to support life. With a diverse range of ecosystems, it is home to a vast array of plant and animal species, including humans."
+    text = "APJ Abdul Kalam was born in Rameswaram, India. He served as the 11th President of India from 2002 to 2007."
+
 
     # Perform Named Entity Recognition
     named_entities = perform_ner(text)

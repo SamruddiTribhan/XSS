@@ -42,10 +42,11 @@ def extract_entities(text):
 
 # Example usage
 text_data = """
-Here is a sample text with a URL: https://www.Sample.com. 
-Also, an IP address: 192.168.789.102. 
-The date is 2023-01-01.
-A PAN number is BBRPL4574H.
+My email address is contact@example.org.
+Visit our website at http://www.mywebsite.net for more info.
+The server IP address is 10.25.67.89.
+Today's date is 2024-11-07.
+My Aadhaar number is 5678 1234 9876.
 """
 
 results = extract_entities(text_data)
